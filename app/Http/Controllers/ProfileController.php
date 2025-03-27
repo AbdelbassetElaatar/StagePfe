@@ -40,6 +40,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
+    /*
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -56,5 +57,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
+    }*/
 }
