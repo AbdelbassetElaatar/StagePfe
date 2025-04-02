@@ -19,4 +19,8 @@ class Template extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function templates()
+{
+    return $this->belongsToMany(Template::class, 'domain_template');
+}
 }

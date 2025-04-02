@@ -12,4 +12,8 @@ class Domain extends Model
         'name',  
         'linked_file', 
     ];
+    public function domains()
+{
+    return $this->belongsToMany(Domain::class, 'domain_template');
+}
 }
