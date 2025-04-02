@@ -37,6 +37,8 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        
+
 
         'public' => [
             'driver' => 'local',
