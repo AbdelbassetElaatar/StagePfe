@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Template extends Model
@@ -10,18 +11,24 @@ class Template extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'product_id', 
-        'facebook_pixel', 
-        'file_path', 
+        'name',
+        'currency',
+        'footer_injection',
+        'header_injection',
+        'file_path',
+        'status'
     ];
 
-    public function product()
+    protected $casts = [
+        'footer_injection' => 'string',
+        'header_injection' => 'string',
+    ];
+
+    /**
+     * Get all fichiers generated from this template
+     */
+    public function fichiers(): HasMany
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Fichier::class);
     }
-    public function templates()
-{
-    return $this->belongsToMany(Template::class, 'domain_template');
-}
 }

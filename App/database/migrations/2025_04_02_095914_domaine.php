@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('templates', function (Blueprint $table) {
+        Schema::create('domains', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->text('facebook_pixel');
-            $table->string('file_path')->nullable(); 
+            $table->foreignId('linked_file_id')->nullable()->constrained('fichiers');
+            $table->string('status')->default('active');
+            $table->boolean('ssl_enabled')->default(false);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('templates');
+        Schema::dropIfExists('domains');
     }
 };

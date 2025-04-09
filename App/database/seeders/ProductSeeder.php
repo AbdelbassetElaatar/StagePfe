@@ -2,29 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Product;
-use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 class ProductSeeder extends Seeder
 {
     public function run()
     {
-        Product::insert([
-            [
-                'name' => 'Sample Product 1',
-                'slug' => Str::slug('Sample Product 1'),
-                'description' => 'This is a sample description for product 1.',
-                'price' => 19.99,
-                'image' => 'products/sample1.jpg',
-            ],
-            [
-                'name' => 'Sample Product 2',
-                'slug' => Str::slug('Sample Product 2'),
-                'description' => 'This is a sample description for product 2.',
-                'price' => 29.99,
-                'image' => 'products/sample2.jpg',
-            ],
-        ]);
+        $faker = Faker::create();
+
+        foreach (range(1, 10) as $index) {
+            Product::create([
+                'name' => $faker->words(3, true),
+                'description' => $faker->paragraph,
+                'slug' => $faker->slug,
+                'image' => $faker->imageUrl(800, 600, 'products'), // Fake image URL
+                'price' => $faker->randomFloat(2, 10, 1000),
+                'status' => 'active',
+                'sku' => $faker->unique()->ean13
+            ]);
+        }
     }
 }
