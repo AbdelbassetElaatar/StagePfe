@@ -8,9 +8,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Resources\DomainResource\pages;
-
-
+use App\Filament\Resources\DomainResource\Pages;
 class DomainResource extends Resource
 {
     protected static ?string $model = Domain::class;

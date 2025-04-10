@@ -9,6 +9,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use App\Filament\Resources\FichierResource\Pages;
 
 class FichierResource extends Resource
 {
@@ -80,7 +81,6 @@ class FichierResource extends Resource
         return [
             'index' => Pages\ListFichiers::route('/'),
             'create' => Pages\CreateFichier::route('/create'),
-            'view' => Pages\ViewFichier::route('/{record}'),
             'edit' => Pages\EditFichier::route('/{record}/edit'),
         ];
     }
