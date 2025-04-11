@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('template_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->string('file_path');
+            $table->string('file_path')->default("app");
             $table->text('header_injection')->nullable();
             $table->text('footer_injection')->nullable();
             $table->timestamps();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Support\Str;
 class Fichier extends Model
 {
     use HasFactory;
@@ -43,4 +43,12 @@ class Fichier extends Model
     {
         return $this->hasMany(Domain::class, 'linked_file_id');
     }
+    protected static function boot()
+{
+    parent::boot();
+
+    static::creating(function ($fichier) {
+        $fichier->file_path = 'generated/' . Str::slug($fichier->name) . '-' . time() . '.blade.php';
+    });
+}
 }

@@ -38,7 +38,8 @@ class FichierResource extends Resource
             Forms\Components\Textarea::make('footer_injection')
                 ->columnSpanFull(),
             Forms\Components\TextInput::make('file_path')
-                ->hiddenOn(['create', 'edit'])
+            ->required()
+            ->default('generated/'.Str::slug(now()->timestamp).'.blade.php')
                 ->visibleOn('view')
                 ->columnSpanFull(),
         ]);

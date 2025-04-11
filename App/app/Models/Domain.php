@@ -15,13 +15,10 @@ class Domain extends Model
         'linked_file_id',
         'status',
         'ssl_enabled',
-        'dns_verified',
-        'analytics_id'
     ];
 
     protected $casts = [
         'ssl_enabled' => 'boolean',
-        'dns_verified' => 'boolean'
     ];
 
     /**

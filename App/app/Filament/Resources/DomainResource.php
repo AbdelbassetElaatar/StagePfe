@@ -9,6 +9,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use App\Filament\Resources\DomainResource\Pages;
+
+
 class DomainResource extends Resource
 {
     protected static ?string $model = Domain::class;
@@ -61,6 +63,9 @@ class DomainResource extends Resource
                         'maintenance' => 'warning',
                     }),
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -81,11 +86,11 @@ class DomainResource extends Resource
     }
 
     public static function getPages(): array
-{
-    return [
-        'index' => Pages\ListDomains::route('/'),
-        'create' => Pages\CreateDomain::route('/create'),
-        'edit' => Pages\EditDomain::route('/{record}/edit'),
-    ];
-}
+    {
+        return [
+            'index' => Pages\ListDomains::route('/'),
+            'create' => Pages\CreateDomain::route('/create'),
+            'edit' => Pages\EditDomain::route('/{record}/edit'),
+        ];
+    }
 }
