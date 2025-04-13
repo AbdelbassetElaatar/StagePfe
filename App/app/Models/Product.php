@@ -17,16 +17,12 @@ class Product extends Model
         'slug',
         'image',
         'price',
-        'status',
         'sku',
-        'stock_quantity',
-        'meta_title',
-        'meta_description'
+        'meta_title'
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
-        'stock_quantity' => 'integer'
     ];
 
     protected static function boot()
@@ -38,9 +34,11 @@ class Product extends Model
         });
     }
 
-    /**
-     * Get all fichiers featuring this product
-     */
+    public function getImageAttribute($value)
+    {
+        return asset('storage/' . $value); 
+    }
+
     public function fichiers(): HasMany
     {
         return $this->hasMany(Fichier::class);

@@ -19,8 +19,8 @@ class ProductSeeder extends Seeder
                 'slug' => $faker->slug,
                 'image' => $faker->imageUrl(800, 600, 'products'), // Fake image URL
                 'price' => $faker->randomFloat(2, 10, 1000),
-                'status' => 'active',
-                'sku' => $faker->unique()->ean13
+                'sku' => $faker->unique()->ean13,
+                'meta_title' => $faker->words(3, true),
             ]);
         }
     }

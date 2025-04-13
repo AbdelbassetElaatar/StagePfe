@@ -15,7 +15,6 @@ class Fichier extends Model
         'name',
         'template_id',
         'product_id',
-        'file_path',
         'header_injection',
         'footer_injection'
     ];

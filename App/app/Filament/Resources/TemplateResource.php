@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class TemplateResource extends Resource
 {
@@ -22,55 +23,42 @@ class TemplateResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            TextInput::make('name')->required(),
-            TextInput::make('file_path')->required(),
-            Textarea::make('header_injection')
-                ->label('Header Code')
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->unique(ignoreRecord: true)
+                ->live(onBlur: true)
+                ->afterStateUpdated(function ($state, $set) {
+                    $set('filename', Str::slug($state).'.blade.php');
+                }),
+            Forms\Components\TextInput::make('currency')
+                ->default('MAD'),
+            Forms\Components\FileUpload::make('template_file')
+                ->label('Blade Template')
+                ->required()
+                ->acceptedFileTypes(['text/x-blade']) // MIME type
+                ->rules([
+                    'required',
+                    'file',
+                    'mimetypes:text/x-blade', // Server-side validation
+                    'mimes:blade.php', // File extension validation
+                ])
+                ->directory('templates') // Storage directory
+                ->preserveFilenames(false)
                 ->columnSpanFull(),
-            Textarea::make('footer_injection')
-                ->label('Footer Code')
-                ->columnSpanFull()
+  
+            Forms\Components\Textarea::make('header_injection')
+                ->columnSpanFull(),
+    
+            Forms\Components\Textarea::make('footer_injection')
+                ->columnSpanFull(),
+    
+            
         ]);
     }
-    public static function table(Table $table): Table
+    
+    public static function afterCreate(Model $record, array $data): void
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('currency')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('file_path')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+        $record->update(['name' => $data['name']]);
     }
 
     public static function getPages(): array

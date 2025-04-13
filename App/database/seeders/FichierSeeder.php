@@ -17,8 +17,7 @@ class FichierSeeder extends Seeder
                 'name' => "Generated File for {$product->name}",
                 'template_id' => $template->id,
                 'product_id' => $product->id,
-                'file_path' => "generated/product-{$product->id}.blade.php",
-                'header_injection' => '<script>console.log("Tracking");</script>',
+                'header_injection' => null,
                 'footer_injection' => null
             ]);
         }

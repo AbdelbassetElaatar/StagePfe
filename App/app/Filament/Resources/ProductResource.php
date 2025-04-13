@@ -50,7 +50,9 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
-                    ->circular(),
+                ->disk('public') 
+                ->path('products')
+                ->circular(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')

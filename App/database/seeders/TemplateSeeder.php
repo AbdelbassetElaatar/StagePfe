@@ -10,13 +10,8 @@ class TemplateSeeder extends Seeder
     {
         Template::create([
             'name' => 'Ecommerce Template',
-            'file_path' => 'templates/ecommerce.blade.php',
-            'currency' => 'USD',
-            'header_injection' => '<meta name="description" content="Sample template">',
-            'footer_injection' => '<!-- Footer content -->',
-            'status' => 'active'
+            'currency' => 'MAD',
         ]);
 
-        // Add more templates if needed
     }
 }

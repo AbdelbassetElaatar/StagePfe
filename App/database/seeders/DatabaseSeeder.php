@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             DomainSeeder::class,
             TemplateSeeder::class,
+            
         ]);
     }
 }

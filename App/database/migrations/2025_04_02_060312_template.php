@@ -10,11 +10,7 @@ return new class extends Migration {
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('currency')->default('USD');
-            $table->text('footer_injection')->nullable();
-            $table->text('header_injection')->nullable();
-            $table->string('file_path');
-            $table->string('status')->default('active');
+            $table->string('currency')->default('MAD');
             $table->timestamps();
         });
     }

@@ -15,8 +15,6 @@ class Template extends Model
         'currency',
         'footer_injection',
         'header_injection',
-        'file_path',
-        'status'
     ];
 
     protected $casts = [
