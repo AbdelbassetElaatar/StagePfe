@@ -1,2 +1,1 @@
-# StagePfe
- 
+Products and domains manager

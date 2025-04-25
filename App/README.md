@@ -1,1 +1,0 @@
-Products and domains manager
