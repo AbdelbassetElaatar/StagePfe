@@ -51,7 +51,6 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                 ->disk('public') 
-                ->path('products')
                 ->circular(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
